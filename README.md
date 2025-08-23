@@ -1,2 +1,2 @@
-# LAINERLINE-Website
-Website for LAINERLINE Solutions - AI consulting and prompt engineering.
+# lainerline-Website
+Website for lainerline - AI consulting and prompt engineering.
