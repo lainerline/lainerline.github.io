@@ -3,72 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>lainerline – AI Beratung &amp; Plattform</title>
+<title>lainerline – AI-Health-Plattform</title>
 <style>
-  body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f9f9f9; }
-  header { background-color: #0044cc; color: #fff; padding: 2rem 1rem; text-align: center; }
-  header h1 { margin: 0; font-size: 2.5rem; text-transform: lowercase; }
-  header p { margin: 0.5rem 0 0; font-size: 1.2rem; }
-  nav { background-color: #002a80; color: #fff; padding: 0.5rem; text-align: center; }
-  nav a { color: #fff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-  nav a:hover { text-decoration: underline; }
-  main { max-width: 900px; margin: 2rem auto; padding: 1rem; }
-  section { margin-bottom: 2rem; }
-  h2 { color: #0044cc; margin-top: 0; }
-  .card { background-color: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-  label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
-  textarea { width: 100%; height: 150px; padding: 0.5rem; margin-bottom: 1rem; }
-  button { background-color: #0044cc; color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; }
-  button:hover { background-color: #003399; }
-  #response { margin-top: 1rem; padding: 1rem; background-color: #f1f1f1; border-radius: 4px; min-height: 60px; }
+  :root { --brand:#0044cc; --ink:#222; --muted:#f5f7fb; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--ink); line-height:1.6; background:#fff; }
+
+  /* Topbar */
+  .topbar { position:sticky; top:0; z-index:10; backdrop-filter:saturate(140%) blur(6px);
+    background:rgba(255,255,255,.8); border-bottom:1px solid #e8ecf5; }
+  .nav { max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:24px; padding:12px 16px; }
+  .brand { font-weight:800; letter-spacing:.2px; color:var(--brand); text-decoration:none; }
+  .nav a { color:#334; text-decoration:none; font-weight:600; }
+  .nav ul { list-style:none; display:flex; gap:16px; margin:0 0 0 auto; padding:0; }
+  .cta { padding:8px 14px; border-radius:8px; background:var(--brand); color:#fff !important; }
+
+  /* Hero */
+  .hero {
+    background-image:url('hero-bg.png');
+    background-size:cover; background-position:center;
+    color:#fff; text-align:center; position:relative;
+  }
+  .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.4), rgba(0,0,0,.35)); }
+  .hero-inner { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:120px 16px 96px; }
+  .hero h1 { font-size:42px; margin:0 0 10px; }
+  .hero p { font-size:18px; max-width:800px; margin:0 auto 22px; opacity:.95; }
+  .stack { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:12px 16px; border-radius:10px; font-weight:700; text-decoration:none; }
+  .btn-primary { background:#fff; color:#0b3ea9; }
+  .btn-ghost { background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.25); }
+
+  /* Sections */
+  section { max-width:1100px; margin:48px auto; padding:0 16px; }
+  h2 { margin:0 0 12px; color:#0b3ea9; }
+  .card { background:var(--muted); border:1px solid #e8ecf5; border-radius:12px; padding:22px; }
+  .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+  .platform-card { background:#fff; border:1px solid #e6e9f3; border-radius:12px; padding:18px; }
+  .platform-card h3 { margin-top:0; color:#0b3ea9; }
+
+  /* Demo */
+  textarea { width:100%; border:1px solid #cfd7ea; border-radius:10px; padding:10px; font:inherit; }
+  button { border:0; background:var(--brand); color:#fff; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer; }
+  #response { margin-top:12px; padding:12px; background:#eef4ff; border:1px solid #dbe6ff; border-radius:10px; min-height:44px; }
+
+  /* Footer / Legal */
+  footer { background:#0b3ea9; color:#fff; margin-top:56px; }
+  .foot { max-width:1100px; margin:0 auto; padding:24px 16px; font-size:14px; }
+  .foot a { color:#fff; text-decoration:underline; }
+  .legal h3 { margin:18px 0 6px; }
 </style>
 </head>
 <body>
-<header>
-  <h1>LAINERLINE solutions</h1>
-  <p>Leveraging Artificial Intelligence for New Results</p>
+
+<!-- NAV -->
+<div class="topbar">
+  <div class="nav">
+    <a class="brand" href="#top">lainerline</a>
+    <ul>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#orientation">Orientierung</a></li>
+      <li><a href="#platform">Plattform</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#legal">Rechtliches</a></li>
+    </ul>
+    <a class="cta" href="#demo">Demo testen</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-inner">
+    <h1>lainerline</h1>
+    <p>Leveraging artificial intelligence for new possibilities in healthcare and beyond.</p>
+    <div class="stack">
+      <a class="btn btn-primary" href="#mission">Unsere Mission</a>
+      <a class="btn btn-ghost" href="#platform">Zur Plattform</a>
+    </div>
+  </div>
 </header>
-<nav>
-  <a href="#mission">Mission</a>
-  <a href="#platform">Plattform</a>
-  <a href="#demo">Demo</a>
-</nav>
-<main>
-  <section id="mission" class="card">
-    <h2>Unsere Mission</h2>
-    <p>lainerline steht für eine neue Generation des KI‑Promptings. Es nutzt bestehende Systeme wie Copilot oder ChatGPT, um künstliche Intelligenz gezielt und wirkungsvoll einzusetzen. Dabei geht es nicht nur um exzellente Ergebnisse durch intelligente Steuerung von KI – sondern auch darum, die Kommunikation zwischen Menschen auf ein neues Niveau der Klarheit, Effizienz und Tiefe zu heben. lainerline verbindet technologische Präzision mit menschlicher Verständigung.</p>
-  </section>
-  <section id="orientierung" class="card">
-    <h2>Warum lainerline?</h2>
-    <p>In einer Welt voller Informationen schafft lainerline Orientierung. Es befähigt Menschen, durch präzise Prompts und intelligente Dialogführung bessere Entscheidungen zu treffen, kreativer zu denken und effektiver zusammenzuarbeiten. lainerline ist nicht nur ein Werkzeug – es ist ein Kommunikationsverstärker.</p>
-  </section>
-  <section id="platform" class="card">
-    <h2>Unsere Plattform</h2>
-    <h3>AI‑Health‑lainerline</h3>
-    <p>Unser erster Schwerpunkt ist der Gesundheitsbereich. AI‑Health‑lainerline unterstützt medizinische Fachkräfte und Patient:innen durch präzise KI‑Prompts, um Informationen schneller zu finden, komplexe Zusammenhänge besser zu verstehen und gemeinsam bessere Entscheidungen zu treffen. Weitere Plattformmodule für andere Bereiche sind geplant.</p>
-  </section>
-  <section id="demo" class="card">
-    <h2>AI‑Beratung – Demo</h2>
-    <p>Stellen Sie eine Frage und erhalten Sie eine simulierte KI‑Antwort.</p>
-    <label for="prompt">Ihre Frage:</label>
-    <textarea id="prompt" placeholder="Geben Sie hier Ihre Frage ein..."></textarea>
+
+<!-- MISSION -->
+<section id="mission" class="card">
+  <h2>Unsere Mission</h2>
+  <p>lainerline steht für eine neue Generation des KI-Promptings. Unsere Plattform nutzt bestehende Systeme wie Copilot oder ChatGPT, um künstliche Intelligenz gezielt und wirkungsvoll einzusetzen. Ziel ist es, durch intelligente Steuerung der KI exzellente Ergebnisse zu erzielen – und zugleich die Kommunikation zwischen Menschen auf ein neues Niveau der Klarheit, Effizienz und Tiefe zu heben.</p>
+</section>
+
+<!-- ORIENTATION -->
+<section id="orientation" class="card">
+  <h2>Orientierung schaffen</h2>
+  <p>In einer Welt voller Informationen schafft lainerline Orientierung. Präzise Prompts und intelligente Dialogführung helfen, bessere Entscheidungen zu treffen, kreativer zu denken und effektiver zusammenzuarbeiten. lainerline ist nicht nur ein Werkzeug – es ist ein Kommunikationsverstärker.</p>
+</section>
+
+<!-- PLATFORM -->
+<section id="platform" class="card">
+  <h2>Plattform</h2>
+  <p>lainerline ist modular und wächst mit neuen Bereichen. Startpunkt:</p>
+  <div class="grid">
+    <div class="platform-card">
+      <h3>AI-Health-lainerline</h3>
+      <p>Unterstützt medizinische Teams und Patient:innen mit gezielten KI-Prompts: Informationen schneller finden, Zusammenhänge verstehen, gemeinsam entscheiden.</p>
+    </div>
+    <div class="platform-card">
+      <h3>Weitere Module (bald)</h3>
+      <p>Reserviert für zukünftige Bereiche (z. B. Bildung, Finanzen). Die Oberfläche ist bereits skalierbar vorbereitet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo" class="card">
+  <h2>Demo</h2>
+  <p>Stellen Sie eine Frage und erhalten Sie eine simulierte KI-Antwort.</p>
+  <label for="prompt">Ihre Frage:</label>
+  <textarea id="prompt" rows="4" placeholder="Geben Sie hier Ihre Frage ein…"></textarea>
+  <div style="margin-top:8px">
     <button id="ask-btn">Antwort erhalten</button>
-    <div id="response"></div>
-  </section>
-</main>
+  </div>
+  <div id="response"></div>
+</section>
+
+<!-- LEGAL -->
+<section id="legal" class="card legal">
+  <h2>Rechtliches</h2>
+
+  <h3>Impressum</h3>
+  <p>
+    Angaben gemäß § 5 TMG:<br>
+    lainerline solutions, Musterstraße 1, 85462 Eitting, Deutschland<br>
+    Vertreten durch: Max Mustermann<br>
+    Kontakt: kontakt@lainerline.de, Tel. +49 (0)123 456789<br>
+    Register: Amtsgericht München, HRB 123456 &nbsp;|&nbsp; USt-ID: DE123456789
+  </p>
+
+  <h3>Haftungsausschluss</h3>
+  <p>Inhalte wurden mit größter Sorgfalt erstellt; für Richtigkeit, Vollständigkeit und Aktualität keine Gewähr. Gemäß § 7 Abs. 1 TMG sind wir für eigene Inhalte verantwortlich, nach §§ 8–10 TMG jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+
+  <h3>Datenschutz</h3>
+  <p>Details zur Verarbeitung personenbezogener Daten, Rechtsgrundlagen, Speicherdauer, Empfängern und Ihren Rechten (Auskunft, Berichtigung, Löschung, Widerspruch) finden Sie in unserer <a href="#">Datenschutzerklärung</a>. Cookies setzen wir nur nach Einwilligung; Sie können diese jederzeit widerrufen.</p>
+
+  <h3>Urheberrecht</h3>
+  <p>Alle auf dieser Website erstellten Inhalte unterliegen dem deutschen Urheberrecht. Jede weitergehende Nutzung bedarf unserer vorherigen schriftlichen Zustimmung.</p>
+</section>
+
+<footer>
+  <div class="foot">
+    <div>&copy; 2025 lainerline solutions. Alle Rechte vorbehalten. &middot; <a href="#legal">Impressum & Datenschutz</a></div>
+  </div>
+</footer>
+
 <script>
-  document.getElementById('ask-btn').addEventListener('click', function() {
-    const responseDiv = document.getElementById('response');
-    responseDiv.textContent = 'Die KI denkt nach...';
+  // Simulierte KI-Antwort
+  document.getElementById('ask-btn').addEventListener('click', function () {
+    const out = document.getElementById('response');
+    out.textContent = 'Die KI denkt nach…';
     const responses = [
-      'Vielen Dank für Ihre Frage! Unsere KI empfiehlt, sich intensiver mit dem Thema auseinanderzusetzen.',
-      'Dies ist eine simulierte KI‑Antwort. Bitte formulieren Sie Ihre Frage so konkret wie möglich.',
-      'Unsere KI hat Ihre Frage erhalten und arbeitet an einer ausführlichen Antwort.',
-      'Bitte haben Sie einen Moment Geduld, während unsere KI Ihre Anfrage verarbeitet.'
+      'AI-Health-lainerline unterstützt medizinische Teams mit präzisen Prompts.',
+      'lainerline verbessert die Zusammenarbeit durch klare, zielgerichtete Dialoge.',
+      'Neue Module sind geplant: Bildung, Finanzen und mehr.',
+      'Hinweis: Dies ist eine Demo-Antwort zur Illustration.'
     ];
-    const randomIndex = Math.floor(Math.random() * responses.length);
-    responseDiv.textContent = responses[randomIndex];
+    setTimeout(() => { out.textContent = responses[Math.floor(Math.random()*responses.length)]; }, 900);
   });
 </script>
 </body>
 </html>
+
